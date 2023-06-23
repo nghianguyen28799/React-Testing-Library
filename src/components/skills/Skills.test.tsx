@@ -34,7 +34,7 @@ describe("Skills", () => {
       {
         timeout: 2000,
       }
-    ); 
+    );
     expect(learningButton).toBeInTheDocument();
   });
 });
