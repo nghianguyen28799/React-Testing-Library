@@ -1,3 +1,3 @@
 export type CounterProps = {
-  initial?: number;
-};
+  initial?: number
+}

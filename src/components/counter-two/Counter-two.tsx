@@ -1,4 +1,4 @@
-import { CounterTwoProps } from "./Counter-two.styles";
+import { CounterTwoProps } from './Counter-two.styles'
 
 export const CounterTwo = (props: CounterTwoProps) => {
   return (
@@ -12,5 +12,5 @@ export const CounterTwo = (props: CounterTwoProps) => {
         <button onClick={props.handleDecrement}>Decrement</button>
       )}
     </div>
-  );
-};
+  )
+}

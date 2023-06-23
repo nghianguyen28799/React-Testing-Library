@@ -1,13 +1,13 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import { Skills } from "./components/skills/Skills";
-import { Counter } from "./components/counter/counter";
-import { AppProviders } from "./components/providers/AppProviders";
-import { MuiMode } from "./components/mode/mode";
+import React from 'react'
+import logo from './logo.svg'
+import './App.css'
+import { Skills } from './components/skills/Skills'
+import { Counter } from './components/counter/counter'
+import { AppProviders } from './components/providers/AppProviders'
+import { MuiMode } from './components/mode/mode'
 
 function App() {
-  const skills = ["HTML", "CSS", "Javascript"];
+  const skills = ['HTML', 'CSS', 'Javascript']
   return (
     <AppProviders>
       <div className="App">
@@ -16,7 +16,7 @@ function App() {
         <MuiMode />
       </div>
     </AppProviders>
-  );
+  )
 }
 
-export default App;
+export default App
