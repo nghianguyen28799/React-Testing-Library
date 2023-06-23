@@ -27,12 +27,8 @@ describe('Counter-Two', () => {
     const decrementButton = screen.getByRole('button', {
       name: 'Decrement',
     })
-    await act(async () => {
-      await userEvent.click(incrementButton)
-    })
-    await act(async () => {
-      await userEvent.click(decrementButton)
-    })
+    await userEvent.click(incrementButton)
+    await userEvent.click(decrementButton)
 
     expect(incrementHandler).toBeCalledTimes(1)
     expect(decrementHandler).toBeCalledTimes(1)

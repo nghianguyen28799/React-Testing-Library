@@ -55,6 +55,7 @@ describe('Application', () => {
     // button
     const buttonElement = screen.getByRole('button')
     expect(buttonElement).toBeInTheDocument()
+    expect(buttonElement).toBeDisabled()
     // select
     const comboBoxElement = screen.getByRole('combobox')
     expect(comboBoxElement).toBeInTheDocument()

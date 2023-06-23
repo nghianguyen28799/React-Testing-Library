@@ -25,9 +25,7 @@ describe('Counter', () => {
     userEvent.setup()
     render(<Counter />)
     const incrementButton = screen.getByRole('button', { name: 'Increment' })
-    await act(async () => {
-      await userEvent.click(incrementButton)
-    })
+    await userEvent.click(incrementButton)
     const countElement = screen.getByRole('heading')
     expect(countElement).toHaveTextContent('1')
   })
@@ -38,12 +36,8 @@ describe('Counter', () => {
     const incrementButton = screen.getByRole('button', {
       name: 'Increment',
     })
-    await act(async () => {
-      await userEvent.click(incrementButton)
-    })
-    await act(async () => {
-      await userEvent.click(incrementButton)
-    })
+    await userEvent.click(incrementButton)
+    await userEvent.click(incrementButton)
     const countElement = screen.getByRole('heading')
     expect(countElement).toHaveTextContent('2')
   })
@@ -52,16 +46,12 @@ describe('Counter', () => {
     userEvent.setup()
     render(<Counter />)
     const amountInput = screen.getByRole('spinbutton')
-    await act(async () => {
-      await userEvent.type(amountInput, '10')
-    })
+    await userEvent.type(amountInput, '10')
     expect(amountInput).toHaveValue(10)
     const setCountButton = screen.getByRole('button', {
       name: 'Set',
     })
-    await act(async () => {
-      await userEvent.click(setCountButton)
-    })
+    await userEvent.click(setCountButton)
     const countElement = screen.getByRole('heading')
     expect(countElement).toHaveTextContent('10')
   })
@@ -74,19 +64,13 @@ describe('Counter', () => {
       name: 'Set',
     })
     const incrementButton = screen.getByRole('button', { name: 'Increment' })
-    await act(async () => {
-      await userEvent.tab()
-    })
+    await userEvent.tab()
     expect(incrementButton).toHaveFocus()
 
-    await act(async () => {
-      await userEvent.tab()
-    })
+    await userEvent.tab()
     expect(amountInput).toHaveFocus()
 
-    await act(async () => {
-      await userEvent.tab()
-    })
+    await userEvent.tab()
     expect(setCountButton).toHaveFocus()
   })
 })
