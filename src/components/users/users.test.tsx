@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { Users } from './users'
-import { server } from '../../mocks/users/server'
+import { server } from '../../mocks/server'
 import { rest } from 'msw'
 
 describe('users', () => {

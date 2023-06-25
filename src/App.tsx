@@ -5,16 +5,22 @@ import { Skills } from './components/skills/Skills'
 import { Counter } from './components/counter/counter'
 import { AppProviders } from './components/providers/AppProviders'
 import { MuiMode } from './components/mode/mode'
+import SignIn from './components/react-hook-form/SignIn'
+import { Container } from '@mui/material'
 
 function App() {
   const skills = ['HTML', 'CSS', 'Javascript']
+  const login = async (email: string, password: string) => {
+    return { email, password }
+  }
   return (
     <AppProviders>
-      <div className="App">
+      <Container sx={{ p: 2 }}>
         {/* <Skills skills={skills} /> */}
         {/* <Counter /> */}
-        <MuiMode />
-      </div>
+        {/* <MuiMode /> */}
+        <SignIn login={login} />
+      </Container>
     </AppProviders>
   )
 }
