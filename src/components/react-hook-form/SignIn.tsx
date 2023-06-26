@@ -1,14 +1,25 @@
-import { Box, Button, TextField } from '@mui/material'
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  TextField,
+} from '@mui/material'
 import React from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 type FormValues = {
   email: string
   password: string
+  remember: boolean
 }
 
 type LoginProps = {
-  login: (email: string, password: string) => Promise<{email: string, password: string}>
+  login: (
+    email: string,
+    password: string,
+    remember: boolean
+  ) => Promise<{ email: string; password: string; remember: boolean }>
 }
 
 const SignIn = ({ login }: LoginProps) => {
@@ -19,7 +30,7 @@ const SignIn = ({ login }: LoginProps) => {
     reset,
   } = useForm<FormValues>()
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    await login(data.email, data.password)
+    await login(data.email, data.password, data.remember)
     reset()
   }
 
@@ -54,6 +65,10 @@ const SignIn = ({ login }: LoginProps) => {
           type="password"
           helperText={errors.password && errors.password.message}
           error={!!errors.password}
+        />
+        <FormControlLabel
+          control={<Checkbox {...register('remember')} />}
+          label="Remember password"
         />
         <Button type="submit" variant="contained">
           SUBMIT

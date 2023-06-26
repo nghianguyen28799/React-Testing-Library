@@ -10,8 +10,8 @@ import { Container } from '@mui/material'
 
 function App() {
   const skills = ['HTML', 'CSS', 'Javascript']
-  const login = async (email: string, password: string) => {
-    return { email, password }
+  const login = async (email: string, password: string, remember: boolean) => {
+    return { email, password, remember }
   }
   return (
     <AppProviders>

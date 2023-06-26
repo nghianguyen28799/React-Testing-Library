@@ -1,9 +1,11 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import SignIn from './SignIn'
 
-const mockLogin = jest.fn((email: string, password: string) => {
-  return Promise.resolve({ email, password })
-})
+const mockLogin = jest.fn(
+  (email: string, password: string, remember: boolean) => {
+    return Promise.resolve({ email, password, remember })
+  }
+)
 
 describe('Sign In Testing', () => {
   test('should display 2 elements are email and password', () => {
@@ -12,7 +14,7 @@ describe('Sign In Testing', () => {
       name: /email/i,
     })
 
-    const passwordElement = screen.getByLabelText(/password/i)
+    const passwordElement = screen.getByLabelText("Password")
     expect(emailElement).toBeInTheDocument()
     expect(passwordElement).toBeInTheDocument()
   })
@@ -35,7 +37,7 @@ describe('Sign In Testing', () => {
       name: /email/i,
     })
 
-    const passwordElement = screen.getByLabelText(/password/i)
+    const passwordElement = screen.getByLabelText("Password")
 
     fireEvent.input(emailElement, {
       target: {
@@ -77,7 +79,7 @@ describe('Sign In Testing', () => {
       }
     )
 
-    fireEvent.input(screen.getByLabelText(/password/i), {
+    fireEvent.input(screen.getByLabelText("Password"), {
       target: {
         value: '1234',
       },
@@ -95,7 +97,7 @@ describe('Sign In Testing', () => {
         name: /email/i,
       })
     ).toHaveValue('test@gmail.com')
-    expect(screen.getByLabelText(/password/i)).toHaveValue('1234')
+    expect(screen.getByLabelText("Password")).toHaveValue('1234')
   })
 
   it('should not display error when value is valid', async () => {
@@ -112,11 +114,17 @@ describe('Sign In Testing', () => {
       }
     )
 
-    fireEvent.input(screen.getByLabelText(/password/i), {
+    fireEvent.input(screen.getByLabelText("Password"), {
       target: {
         value: 'password',
       },
     })
+
+    fireEvent.click(
+      screen.getByRole('checkbox', {
+        name: /remember password/i,
+      })
+    )
 
     fireEvent.click(
       screen.getByRole('button', {
@@ -133,7 +141,9 @@ describe('Sign In Testing', () => {
     await waitFor(() =>
       expect(screen.queryByText(/not match email/i)).not.toBeInTheDocument()
     )
-    await waitFor(() => expect(mockLogin).toBeCalledWith("test@gmail.com", "password"))
+    await waitFor(() =>
+      expect(mockLogin).toBeCalledWith('test@gmail.com', 'password', true)
+    )
     await waitFor(() =>
       expect(
         screen.getByRole('textbox', {
@@ -141,6 +151,6 @@ describe('Sign In Testing', () => {
         })
       ).toHaveValue('')
     )
-    expect(screen.getByLabelText(/password/i)).toHaveValue('')
+    expect(screen.getByLabelText("Password")).toHaveValue('')
   })
 })
